@@ -34,7 +34,7 @@ const ForgotPassword = () => {
                             <input id='email' type='email' className='form-input' required/>
                         </div>
                         <button
-                            className=' w-full mt-6 p-2 border border-blue-600 bg-blue-600 text-white rounded-md font-inter-tight font-semibold hover:bg-white hover:text-blue-600'>Submit
+                            className=' w-full mt-6 p-2 border border-blue-600 bg-blue-600 text-white rounded-md font-inter-tight font-semibold hover:bg-white hover:text-blue-600'>Reset Password
                         </button>
                         <Link to='/signin' className=' mt-4 font-inter-tight text-center text-blue-600 font-semibold'>Back to Login </Link>
 

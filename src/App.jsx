@@ -1,8 +1,8 @@
 import {Route, Routes} from "react-router-dom";
 import './index.css';
-import SignIn from "./pages/SignIn.jsx";
-import SignUp from "./pages/SignUp.jsx";
-import ForgotPassword from "./pages/ForgotPassword.jsx";
+import SignIn from "./AuthPages/SignIn.jsx";
+import SignUp from "./AuthPages/SignUp.jsx";
+import ForgotPassword from "./AuthPages/ForgotPassword.jsx";
 
 
 function App() {
