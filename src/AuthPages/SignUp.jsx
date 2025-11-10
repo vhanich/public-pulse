@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import GoogleIcon from '../assets/images/google.svg';
-import AppleIcon from '../assets/images/apple.svg';
+import GitHubIcon from '../assets/images/github.svg';
 import '../index.css';
 import PasswordInput from "../components/PasswordInput.jsx";
-import NewsIcon from '../assets/images/news.png'
+import NewsIcon from '../assets/images/news.png';
+import {registerWithEmail, signInWithGitHub, signInWithGoogle} from "../firebase/authMethods";
 
 
 const SignUp = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        if (password !== confirmPassword) {
+            alert('Passwords don\'t match');
+            setError("Passwords don't match");
+            return;
+        }
+        setError('');
+        await registerWithEmail(email, password);
+    }
+
     return (
         <div className='flex bg-gradient-to-b from-violet-300 to-white items-center justify-center min-h-screen p-4'>
             <div className='w-full overflow-hidden'>
@@ -30,13 +47,28 @@ const SignUp = () => {
                     <div className=' py-10 p-6 md:p-12  rounded-3xl bg-white md:shadow-lg'>
                         <h2 className='font-inter-tight font-semibold text-3xl  text-center text-black md:text-left'>Sign Up</h2>
                         <p className='text'>Your Social Campaigns</p>
-                        <div className='flex flex-col space-y-2 md:space-y-3  mt-2 md:mt-5'>
+                        <form
+                            onSubmit={handleSubmit}
+                            className='flex flex-col space-y-2 md:space-y-3  mt-2 md:mt-5'>
                             <label htmlFor='email' className='form-label'>Email</label>
-                            <input type='email' name='email' className='form-input' required/>
+                            <input
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                type='email'
+                                name='email'
+                                className='form-input'
+                                required
+                            />
                             <label htmlFor='password' className='form-label'>Password</label>
-                            <PasswordInput/>
-                            <label htmlFor='password' className='form-label'>Repeat Password</label>
-                            <PasswordInput/>
+                            <PasswordInput
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <label htmlFor='confirm' className='form-label'>Repeat Password</label>
+                            <PasswordInput
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
                             <div className="flex items-center my-6">
                                 <div className="flex-grow border-t border-gray-200"></div>
                                 <span className="mx-4 text-gray-500 text-sm font-semibold">Or with</span>
@@ -44,26 +76,30 @@ const SignUp = () => {
                             </div>
                             <div className="flex flex-col space-x-0 space-y-2 md:flex-row md:space-x-4 md:space-y-0">
                                 <button
+                                    onClick={signInWithGoogle}
+                                    type="button"
                                     className="button-scale">
-                                    <img src={GoogleIcon} alt="Google"/>
+                                    <img src={GoogleIcon} alt="Google Icon"/>
                                     <span className="font-inter-tight font-semibold">Sign Up with Google</span>
                                 </button>
                                 <button
+                                    onClick={signInWithGitHub}
+                                    type="button"
                                     className="button-scale">
-                                    <img src={AppleIcon} alt="Apple"/>
-                                    <span className="font-inter-tight font-semibold">Sign Up with Apple</span>
+                                    <img src={GitHubIcon} alt="GitHub Icon"/>
+                                    <span className="font-inter-tight font-semibold">Sign Up with GitHub</span>
                                 </button>
                             </div>
                             <button
-                                className='flex-grow p-2 border border-blue-600 bg-blue-600 text-white rounded-md font-inter-tight font-semibold hover:bg-white hover:text-blue-600'>Sign
-                                Up
+                                type='submit'
+                                className='button-submit'>Sign Up
                             </button>
                             <div className='flex items-center justify-center space-x-2'>
                                 <p className=" text-sm text-gray-300 font-inter-tight font-semibold tracking-wide">Already have an
                                     account? </p>
                                 <Link to='/signin' className='font-inter-tight text-blue-600 font-semibold'>Sign in</Link>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

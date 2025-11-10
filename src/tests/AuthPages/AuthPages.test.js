@@ -1,9 +1,8 @@
-/* eslint-env jest */
 import '@testing-library/jest-dom';
 import { render, screen } from "@testing-library/react";
-import SignUp from "../AuthPages/SignUp.jsx";
-import SignIn from "../AuthPages/SignIn";
-import ForgotPassword from "../AuthPages/ForgotPassword";
+import SignUp from "../../AuthPages/SignUp.jsx";
+import SignIn from "../../AuthPages/SignIn.jsx";
+import ForgotPassword from "../../AuthPages/ForgotPassword.jsx";
 import {BrowserRouter} from "react-router-dom";
 
 describe("Authentication Pages", () => {
