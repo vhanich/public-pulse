@@ -20,4 +20,8 @@
     .button-scale {
         @apply flex items-center justify-center py-2 space-x-3 border border-gray-200 p-2 shadow shadow-gray-200 rounded-md  md:w-1/2 transform hover:scale-95 hover:border-blue-600
     }
+
+    .button-submit {
+        @apply flex-grow p-2 border border-blue-600 bg-blue-600 text-white rounded-md font-inter-tight font-semibold hover:bg-white hover:text-blue-600
+    }
 }

@@ -1,13 +1,15 @@
 import {useState} from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 
-export default function PasswordInput() {
+export default function PasswordInput({ value, onChange }) {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
         <div className='w-full relative'>
             <input
                 name='password'
+                value={value}
+                onChange={onChange}
                 type={showPassword ? "password" : "text"}
                 className="w-full border border-gray-300 rounded-lg px-4 py-2  focus:outline-blue-400"
                 required

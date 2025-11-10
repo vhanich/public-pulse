@@ -3,6 +3,7 @@ import './index.css';
 import SignIn from "./AuthPages/SignIn.jsx";
 import SignUp from "./AuthPages/SignUp.jsx";
 import ForgotPassword from "./AuthPages/ForgotPassword.jsx";
+import ResetPasswordPage from "./AuthPages/ResetPassword.jsx";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
                 <Route path='signup' element={<SignUp/>}/>
                 <Route path='signin' element={<SignIn/>}/>
                 <Route path='forgot-password' element={<ForgotPassword/>}/>
+                <Route path="reset-password" element={<ResetPasswordPage />} />
             </Routes>
 
         </div>
