@@ -1,7 +1,7 @@
 import {useState} from 'react';
-import { Eye, EyeOff } from 'lucide-react';
+import {Eye, EyeOff} from 'lucide-react';
 
-export default function PasswordInput({ value, onChange }) {
+export default function PasswordInput({value, onChange}) {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
@@ -19,7 +19,7 @@ export default function PasswordInput({ value, onChange }) {
                 onClick={() => setShowPassword((prev) => !prev)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 "
             >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                {showPassword ? <EyeOff size={18}/> : <Eye size={18}/>}
             </button>
         </div>
     );

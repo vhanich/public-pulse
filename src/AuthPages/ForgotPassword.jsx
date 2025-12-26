@@ -1,16 +1,15 @@
 import React, {useState} from 'react';
 import '../index.css';
 import ResetPasswordImage from "../assets/images/reset-password.png";
-import { Link } from "react-router-dom";
-import { resetPassword } from "../firebase/authMethods";
+import {Link} from "react-router-dom";
+import {resetPassword} from "../firebase/authMethods";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
 
 
-
     return (
-        <div className='flex bg-gradient-to-b from-blue-300 to-white items-center justify-center min-h-screen p-4'>
+        <div className='flex bg-gradient-to-b from-[#D2DDD5] to-white items-center justify-center min-h-screen p-4'>
             <div className='w-full overflow-hidden'>
                 <div className='flex flex-col sm:flex-row sm:mx-10 sm:my-6 '>
                     <div className='hidden sm:flex sm:flex-col sm:items-center sm:justify-center sm:p-8 sm:ml-6 sm:w-1/2 '>
@@ -33,7 +32,7 @@ const ForgotPassword = () => {
                         <div className='flex flex-col justify-center space-y-2 md:space-y-3  mt-2 md:mt-4'>
                             <h2 className='font-inter-tight font-semibold text-3xl text-center text-black md:text-left'>Forgot
                                 Password?</h2>
-                            <p className='text'>Enter your e-mail address and  we will send you a link to reset your password.</p>
+                            <p className='text'>Enter your e-mail address and we will send you a link to reset your password.</p>
                             <label htmlFor='email' className='form-label'>Email</label>
                             <input
                                 value={email}
@@ -42,10 +41,12 @@ const ForgotPassword = () => {
                                 type='email'
                                 className='form-input' required/>
                         </div>
-                        <button onClick={() => ResetPassword(email)}
-                            className=' w-full mt-6 p-2 border border-blue-600 bg-blue-600 text-white rounded-md font-inter-tight font-semibold hover:bg-white hover:text-blue-600'>Reset Password
+                        <button onClick={() => resetPassword(email)}
+                                className=' w-full mt-6 p-2 border border-emerald-600 bg-emerald-600 text-white rounded-md font-inter-tight font-semibold hover:bg-white hover:text-emerald-600'>
+                            Reset Password
                         </button>
-                        <Link to='/signin' className=' mt-4 font-inter-tight text-center text-blue-600 font-semibold'>Back to Login </Link>
+                        <Link to='/signin' className=' mt-4 font-inter-tight text-center text-emerald-600 font-semibold'>Back to
+                            Login </Link>
 
                     </div>
                 </div>

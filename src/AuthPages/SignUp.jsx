@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import GoogleIcon from '../assets/images/google.svg';
 import GitHubIcon from '../assets/images/github.svg';
 import '../index.css';
@@ -13,6 +13,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -21,12 +22,44 @@ const SignUp = () => {
             setError("Passwords don't match");
             return;
         }
-        setError('');
-        await registerWithEmail(email, password);
+        try {
+            const user = await registerWithEmail(email, password);
+            console.log(user);
+            if (user) {
+                navigate('/app');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+    };
+
+    const handleSignWithGoogle = async () => {
+        try {
+            const user = await signInWithGoogle();
+            console.log(user);
+            if (user) {
+                navigate('/app');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const handleSignInWithGitHub = async () => {
+        try {
+            const user = await signInWithGitHub();
+            console.log(user);
+            if (user) {
+                navigate('/app');
+            }
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
-        <div className='flex bg-gradient-to-b from-violet-300 to-white items-center justify-center min-h-screen p-4'>
+        <div className='flex bg-gradient-to-b from-[#D2DDD5] to-white items-center justify-center min-h-screen p-4'>
             <div className='w-full overflow-hidden'>
                 <div className='flex flex-col sm:flex-row  sm:mx-10 sm:my-6 '>
                     <div className='hidden sm:flex sm:flex-col sm:items-center sm:justify-center sm:p-8 sm:ml-6 sm:w-1/2 '>
@@ -76,14 +109,14 @@ const SignUp = () => {
                             </div>
                             <div className="flex flex-col space-x-0 space-y-2 md:flex-row md:space-x-4 md:space-y-0">
                                 <button
-                                    onClick={signInWithGoogle}
+                                    onClick={handleSignWithGoogle}
                                     type="button"
                                     className="button-scale">
                                     <img src={GoogleIcon} alt="Google Icon"/>
                                     <span className="font-inter-tight font-semibold">Sign Up with Google</span>
                                 </button>
                                 <button
-                                    onClick={signInWithGitHub}
+                                    onClick={handleSignInWithGitHub}
                                     type="button"
                                     className="button-scale">
                                     <img src={GitHubIcon} alt="GitHub Icon"/>
@@ -97,7 +130,7 @@ const SignUp = () => {
                             <div className='flex items-center justify-center space-x-2'>
                                 <p className=" text-sm text-gray-300 font-inter-tight font-semibold tracking-wide">Already have an
                                     account? </p>
-                                <Link to='/signin' className='font-inter-tight text-blue-600 font-semibold'>Sign in</Link>
+                                <Link to='/signin' className='font-inter-tight text-emerald-600 font-semibold'>Sign in</Link>
                             </div>
                         </form>
                     </div>
