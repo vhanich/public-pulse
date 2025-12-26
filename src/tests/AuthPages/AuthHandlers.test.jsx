@@ -1,16 +1,7 @@
 /* eslint-env jest */
 import '@testing-library/jest-dom';
-import {
-    signInWithPopup,
-    sendPasswordResetEmail,
-    confirmPasswordReset
-} from "firebase/auth";
-import {
-    signInWithGoogle,
-    signInWithGitHub,
-    resetPassword,
-    confirmResetPassword
-} from "@/firebase/authMethods.js";
+import {confirmPasswordReset, sendPasswordResetEmail, signInWithPopup} from "firebase/auth";
+import {confirmResetPassword, resetPassword, signInWithGitHub, signInWithGoogle} from "@/firebase/authMethods.js";
 
 
 global.alert = jest.fn();
@@ -21,7 +12,7 @@ describe("Auth handlers", () => {
     });
 
     test("Google sign-in: successful login", async () => {
-        signInWithPopup.mockResolvedValueOnce({ user: { uid: "123" } });
+        signInWithPopup.mockResolvedValueOnce({user: {uid: "123"}});
         await signInWithGoogle();
         expect(global.alert).toHaveBeenCalledWith("Sign in with Google successfully!");
     });

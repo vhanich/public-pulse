@@ -4,17 +4,22 @@ import SignIn from "./AuthPages/SignIn.jsx";
 import SignUp from "./AuthPages/SignUp.jsx";
 import ForgotPassword from "./AuthPages/ForgotPassword.jsx";
 import ResetPasswordPage from "./AuthPages/ResetPassword.jsx";
-
+import AppLayout from "@/layout/AppLayout.jsx";
+import Dashboard from "../src/components/Dashboard.jsx"
 
 function App() {
 
     return (
         <div className="min-h-screen">
             <Routes>
+                <Route path='/' element={<AppLayout/>}>
+                    <Route index element={<Dashboard/>}/>
+                </Route>
                 <Route path='signup' element={<SignUp/>}/>
                 <Route path='signin' element={<SignIn/>}/>
                 <Route path='forgot-password' element={<ForgotPassword/>}/>
-                <Route path="reset-password" element={<ResetPasswordPage />} />
+                <Route path='reset-password' element={<ResetPasswordPage/>}/>
+
             </Routes>
 
         </div>

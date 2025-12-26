@@ -1,29 +1,29 @@
 import {
-    GoogleAuthProvider,
-    GithubAuthProvider,
-    signInWithPopup,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    sendPasswordResetEmail,
     confirmPasswordReset,
+    createUserWithEmailAndPassword,
+    GithubAuthProvider,
+    GoogleAuthProvider,
+    sendPasswordResetEmail,
+    signInWithEmailAndPassword,
+    signInWithPopup
 } from "firebase/auth";
-import { auth } from '@/firebase/config';
+import {auth} from '@/firebase/config';
 
 // --- EMAIL SIGN-UP ---
-export const registerWithEmail = async(email, password) => {
-    try{
-        await createUserWithEmailAndPassword(auth, email, password);
-        alert("Account created!");
+export const registerWithEmail = async (email, password) => {
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        return userCredential.user;
     } catch (error) {
         alert(error.message);
     }
 };
 
 // --- EMAIL SIGN-IN ---
-export const signInWithEmail = async(email, password) => {
-    try{
-        await signInWithEmailAndPassword(auth, email, password);
-        alert("Sign in successfully");
+export const signInWithEmail = async (email, password) => {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        return userCredential.user;
     } catch (error) {
         alert(error.message);
     }
@@ -33,19 +33,20 @@ export const signInWithEmail = async(email, password) => {
 const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
     try {
-        await signInWithPopup(auth, googleProvider);
-        alert("Sign in with Google successfully!");
+        const userCredential = await signInWithPopup(auth, googleProvider);
+        return userCredential.user;
     } catch (error) {
         alert(error.message);
     }
 };
 
+
 // --- GITHUB SIGN-IN ---
 const gitHubProvider = new GithubAuthProvider();
 export const signInWithGitHub = async () => {
     try {
-        await signInWithPopup(auth, gitHubProvider);
-        alert("Sign in with GitHub successfully");
+        const userCredential = await signInWithPopup(auth, gitHubProvider);
+        return userCredential.user;
     } catch (error) {
         alert(error.message);
     }
@@ -70,3 +71,5 @@ export const confirmResetPassword = async (oobCode, newPassword) => {
         alert(error.message);
     }
 };
+
+

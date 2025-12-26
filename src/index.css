@@ -10,7 +10,7 @@
     }
 
     .form-input {
-        @apply p-2 px-4 border border-gray-200 rounded-lg focus:outline-blue-400;
+        @apply p-2 px-4 border border-gray-200 rounded-lg focus:outline-emerald-600;
     }
 
     .text {
@@ -18,10 +18,50 @@
     }
 
     .button-scale {
-        @apply flex items-center justify-center py-2 space-x-3 border border-gray-200 p-2 shadow shadow-gray-200 rounded-md  md:w-1/2 transform hover:scale-95 hover:border-blue-600
+        @apply flex items-center justify-center py-2 space-x-3 border border-gray-200 p-2 shadow shadow-gray-200 rounded-md  md:w-1/2 transform hover:scale-95 hover:border-emerald-600
     }
 
     .button-submit {
-        @apply flex-grow p-2 border border-blue-600 bg-blue-600 text-white rounded-md font-inter-tight font-semibold hover:bg-white hover:text-blue-600
+        @apply flex-grow p-2 border border-emerald-600 bg-emerald-600 text-white rounded-md font-inter-tight font-semibold hover:bg-white hover:text-emerald-600
     }
+}
+
+.recharts-wrapper svg:focus,
+.recharts-cartesian-grid:focus,
+.recharts-surface:focus,
+.recharts-wrapper *:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.rdrCalendarWrapper {
+    font-size: 13px !important;
+    background: transparent !important;
+}
+
+.rdrMonth {
+    width: 260px !important;
+    padding: 0 0.5rem 0.5rem 0.5rem !important;
+}
+
+.rdrDay {
+    height: 32px !important;
+}
+
+.rdrDayNumber span {
+    font-weight: 500 !important;
+    top: 3px !important;
+    bottom: 3px !important;
+}
+
+.rdrStartEdge, .rdrEndEdge, .rdrInRange {
+    background: #10b981 !important;
+}
+
+.rdrSelected, .rdrInRange {
+    color: #10b981 !important;
+}
+
+.rdrMonthName {
+    display: none !important;
 }
